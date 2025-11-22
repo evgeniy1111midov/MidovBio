@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evgeniy Midov - Биография</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff0055;
+            --neon-green: #00ff88;
+            --neon-blue: #0088ff;
+            --dark-bg: #0a0a16;
+            --dark-card: rgba(15, 15, 35, 0.7);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --text-light: #ffffff;
+            --text-gray: #a0a0c0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 5px var(--neon-pink); }
+            50% { box-shadow: 0 0 20px var(--neon-pink), 0 0 30px var(--neon-pink); }
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        /* Общие стили */
+        section {
+            min-height: 100vh;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+            border-radius: 3px;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--neon-green);
+        }
+
+        .neon-text {
+            text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+        }
+
+        .neon-pink { color: var(--neon-pink); }
+        .neon-green { color: var(--neon-green); }
+        .neon-blue { color: var(--neon-blue); }
+
+        /* Навигация */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            background: rgba(10, 10, 22, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-green);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Герой секция */
+        .hero {
+            background: linear-gradient(-45deg, #0a0a16, #151528, #1a1a35, #0f0f1f);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 0, 85, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 70%, rgba(0, 136, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid var(--neon-pink);
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typewriter 3s steps(40, end), blink-caret 0.75s step-end infinite;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--text-gray);
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--neon-pink); }
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+            color: white;
+            border: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--neon-green);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Секция "Обо мне" */
+        .about {
+            background: var(--dark-bg);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .avatar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .avatar {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-blue));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .avatar::before {
+            content: '';
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: var(--dark-bg);
+        }
+
+        .avatar i {
+            position: relative;
+            z-index: 1;
+            font-size: 5rem;
+            color: var(--neon-green);
+        }
+
+        .about-text {
+            padding: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text-gray);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--glass-bg);
+            color: var(--text-light);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            color: var(--neon-green);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Секция "Навыки и опыт" */
+        .skills {
+            background: linear-gradient(135deg, #0f0f1f, #151528);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            padding: 25px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .skill-percent {
+            color: var(--neon-green);
+            font-weight: 700;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            border-radius: 4px;
+            position: relative;
+            width: 0;
+            transition: width 1.5s ease-in-out;
+        }
+
+        .swat-progress { background: var(--neon-pink); width: 100%; }
+        .osint-progress { background: var(--neon-blue); width: 75%; }
+        .trolling-progress { background: var(--neon-green); width: 60%; }
+
+        .progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Секция "Услуги" */
+        .services {
+            background: var(--dark-bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(255, 0, 85, 0.3), transparent 30%);
+            animation: rotate 4s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--neon-blue);
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .service-price {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin: 20px 0;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+
+        .service-description {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        /* Секция "Контакты" */
+        .contact {
+            background: linear-gradient(135deg, #151528, #0f0f1f);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--neon-pink);
+        }
+
+        .contact-platform {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .contact-username {
+            color: var(--neon-green);
+            font-weight: 700;
+            word-break: break-all;
+        }
+
+        /* Футер */
+        footer {
+            background: #080811;
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .copyright {
+            color: var(--text-gray);
+            margin-top: 20px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .typewriter {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .typewriter {
+                font-size: 1rem;
+                white-space: normal;
+                border-right: none;
+                animation: none;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .avatar {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .avatar::before {
+                width: 190px;
+                height: 190px;
+            }
+            
+            .avatar i {
+                font-size: 4rem;
+            }
+            
+            .service-price {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">E.MIDOV</div>
+            <div class="nav-links">
+                <a href="#home">Главная</a>
+                <a href="#about">Обо мне</a>
+                <a href="#skills">Навыки</a>
+                <a href="#services">Услуги</a>
+                <a href="#contact">Контакты</a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Герой секция -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Evgeniy <span class="neon-text neon-pink">Midov</span></h1>
+                <div class="typewriter">Привет, тебя встречает сайт-биография от Жени Мидова (@psycho_midov)</div>
+                <div class="hero-btns">
+                    <a href="#about" class="btn btn-primary">Узнать больше</a>
+                    <a href="#contact" class="btn btn-outline">Связаться</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Обо мне" -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Обо <span class="neon-text neon-green">мне</span></h2>
+            <div class="about-content">
+                <div class="avatar-container">
+                    <div class="avatar">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                </div>
+                <div class="about-text glass-card">
+                    <p>Я Evgeniy Midov, специалист в области информационной безопасности и цифровых расследований. Имею опыт работы в различных направлениях киберпространства.</p>
+                    <p>Моя деятельность включает swatting, OSINT и троллинг. Я постоянно развиваюсь в этих направлениях и предлагаю свои услуги тем, кто ценит качество и анонимность.</p>
+                    <div class="social-links">
+                        <a href="https://t.me/psycho_midov" class="social-link">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fas fa-id-card"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Навыки и опыт" -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Навыки и <span class="neon-text neon-blue">опыт</span></h2>
+            <div class="skills-grid">
+                <div class="skill-card glass-card">
+                    <div class="skill-header">
+                        <div class="skill-name">Swatting</div>
+                        <div class="skill-percent">100%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress swat-progress"></div>
+                    </div>
+                    <p class="skill-description">Более года опыта в организации и проведении сватов. Глубокое понимание методов и тактик.</p>
+                </div>
+                
+                <div class="skill-card glass-card">
+                    <div class="skill-header">
+                        <div class="skill-name">OSINT</div>
+                        <div class="skill-percent">75%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress osint-progress"></div>
+                    </div>
+                    <p class="skill-description">9 месяцев активной работы с открытыми источниками информации. Сбор и анализ данных.</p>
+                </div>
+                
+                <div class="skill-card glass-card">
+                    <div class="skill-header">
+                        <div class="skill-name">Троллинг</div>
+                        <div class="skill-percent">60%</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress trolling-progress"></div>
+                    </div>
+                    <p class="skill-description">Активная деятельность в период 2023-2024 годов. Разработка стратегий и тактик.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Услуги" -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Мои <span class="neon-text neon-pink">услуги</span></h2>
+            <div class="services-grid">
+                <div class="service-card glass-card">
+                    <div class="service-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3 class="service-title">Аккаунты Discord</h3>
+                    <div class="service-price">50-100₽</div>
+                    <p class="service-description">Продажа качественных аккаунтов Discord с различными характеристиками и уровнем защиты.</p>
+                    <a href="#contact" class="btn btn-outline">Заказать</a>
+                </div>
+                
+                <div class="service-card glass-card">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="service-title">Обучение</h3>
+                    <div class="service-price">400₽</div>
+                    <p class="service-description">Индивидуальное обучение основам swatting, OSINT и троллинга. Практические занятия.</p>
+                    <a href="#contact" class="btn btn-outline">Заказать</a>
+                </div>
+                
+                <div class="service-card glass-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="service-title">Защита</h3>
+                    <div class="service-price">10$</div>
+                    <p class="service-description">Предоставление услуг по защите от сватов и других кибератак. Консультации по безопасности.</p>
+                    <a href="#contact" class="btn btn-outline">Заказать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "Контакты" -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Мои <span class="neon-text neon-green">контакты</span></h2>
+            <div class="contact-grid">
+                <div class="contact-card glass-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <div class="contact-platform">Telegram</div>
+                    <div class="contact-username">@psycho_midov</div>
+                </div>
+                
+                <div class="contact-card glass-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <div class="contact-platform">TikTok</div>
+                    <div class="contact-username">@Medovikov_smertniy</div>
+                </div>
+                
+                <div class="contact-card glass-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <div class="contact-platform">TikTok 2</div>
+                    <div class="contact-username">@Evgeniy_Midov1</div>
+                </div>
+                
+                <div class="contact-card glass-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="contact-platform">BIO</div>
+                    <div class="contact-username">@Evgeniy_Midov_Bio</div>
+                </div>
+                
+                <div class="contact-card glass-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <div class="contact-platform">Adapter</div>
+                    <div class="contact-username">@adpt_midova</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo">E.MIDOV</div>
+            <div class="copyright">© 2024 Evgeniy Midov. Все права защищены.</div>
+        </div>
+    </footer>
+
+    <script>
+        // Анимация появления элементов при скролле
+        document.addEventListener('DOMContentLoaded', function() {
+            // Анимация появления прогресс-баров
+            const progressBars = document.querySelectorAll('.progress');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const progressBar = entry.target;
+                        const width = progressBar.style.width;
+                        progressBar.style.width = '0';
+                        
+                        setTimeout(() => {
+                            progressBar.style.width = width;
+                        }, 300);
+                        
+                        observer.unobserve(progressBar);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            progressBars.forEach(bar => {
+                observer.observe(bar);
+            });
+            
+            // Плавная прокрутка для навигации
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Мобильное меню
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+            
+            // Адаптация мобильного меню
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    navLinks.style.display = 'flex';
+                } else {
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
